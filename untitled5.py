@@ -13,17 +13,17 @@ feature_names = ["NEU", "ALB", "AST", "TBIL", "UREA", "INR"]
 st.title("HEV-ALF Predictor")
 
 #  numerical input
-INR = st.number_input("INR:", min_value=0, max_value=100)
+INR = st.number_input("International Normalized Ratio", min_value=0, max_value=100, step=0.01)
 
-TBIL = st.number_input("TBIL:", min_value=0, max_value=10000)
+TBIL = st.number_input("Total bilirubin (μmol/L)", min_value=0, max_value=10000, step=0.01)
 
-ALB = st.number_input("ALB:", min_value=0, max_value=10000)
+ALB = st.number_input("Albumin (g/L)", min_value=0, max_value=10000, step=0.01)
 
-NEU = st.number_input("NEU:", min_value=0, max_value=10000)
+NEU = st.number_input("Neutrophil count (10^9/L)", min_value=0, max_value=10000, step=0.01)
 
-AST = st.number_input("AST:", min_value=0, max_value=10000)
+AST = st.number_input("aspartate aminotransferase (U/L)", min_value=0, max_value=10000, step=0.01)
 
-UREA = st.number_input("UREA:", min_value=0, max_value=10000)
+UREA = st.number_input("Urea (mmol/L)", min_value=0, max_value=10000, step=0.01)
 
 feature_values = [INR,TBIL,ALB,NEU,AST,UREA]
 
