@@ -2,6 +2,7 @@ numpy
 pandas
 seaborn
 scikit-learn
+sksurv
 streamlit
 streamlit_lottie
 matplotlib
