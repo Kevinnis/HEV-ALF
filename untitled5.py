@@ -13,17 +13,24 @@ feature_names = ["NEU", "ALB", "AST", "TBIL", "UREA", "INR"]
 st.title("HEV-ALF Predictor")
 
 #  numerical input
-INR = st.number_input("International Normalized Ratio", min_value=0, max_value=100)
+# 设置自定义标题字体
+st.markdown("<h2 style='font-weight: bold;'>HEV-ALF Risk Prediction Model</h2>", unsafe_allow_html=True)
 
-TBIL = st.number_input("Total bilirubin (μmol/L)", min_value=0, max_value=10000)
+import streamlit as st
 
-ALB = st.number_input("Albumin (g/L)", min_value=0, max_value=10000)
+# 设置每个数值输入的格式为两位小数
+INR = st.number_input("International Normalized Ratio", min_value=0.0, max_value=100.0, format="%.2f")
 
-NEU = st.number_input("Neutrophil count (10^9/L)", min_value=0, max_value=10000)
+TBIL = st.number_input("Total bilirubin (μmol/L)", min_value=0.0, max_value=10000.0, format="%.2f")
 
-AST = st.number_input("aspartate aminotransferase (U/L)", min_value=0, max_value=10000)
+ALB = st.number_input("Albumin (g/L)", min_value=0.0, max_value=10000.0, format="%.2f")
 
-UREA = st.number_input("Urea (mmol/L)", min_value=0, max_value=10000)
+NEU = st.number_input("Neutrophil count (10^9/L)", min_value=0.0, max_value=10000.0, format="%.2f")
+
+AST = st.number_input("Aspartate aminotransferase (U/L)", min_value=0.0, max_value=10000.0, format="%.2f")
+
+UREA = st.number_input("Urea (mmol/L)", min_value=0.0, max_value=10000.0, format="%.2f")
+
 
 feature_values = [INR,TBIL,ALB,NEU,AST,UREA]
 
