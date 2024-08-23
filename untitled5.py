@@ -3,7 +3,6 @@ import joblib
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import sksurv 
 from sksurv.ensemble import RandomSurvivalForest
 
 # Load the model

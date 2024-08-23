@@ -1,8 +1,9 @@
-numpy
-pandas
-seaborn
-scikit-learn
 sksurv
 streamlit
 streamlit_lottie
 matplotlib
+numpy>=1.23.0
+pandas>=2.2.2
+seaborn>=0.13.2
+scikit-learn>=1.5.1
+sksurv.ensemble
