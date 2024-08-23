@@ -1,12 +1,12 @@
-import joblib
 import streamlit as st
 import joblib
 import numpy as np
 import pandas as pd
-import shap
 import matplotlib.pyplot as plt
+from sksurv.ensemble import RandomSurvivalForest
+
 # Load the model
-model = joblib.load('rsf.mod1.pkl')
+model = joblib.load('/Users/kevinmurphy/Desktop/HEV-ALF预测模型部署/HEV-ALF/rsf.mod1.pkl')
 # Define feature names
 feature_names = ["NEU", "ALB", "AST", "TBIL", "UREA", "INR"]
 # Streamlit user interface
@@ -32,13 +32,10 @@ features = np.array([feature_values])
 if st.button("Predict"):    
     # Predict class and probabilities    
     predicted_class = model.predict(features)[0]    
-    predicted_proba = model.predict_proba(features)[0]
+    predicted_proba = model.predict(features)[0]
     # Display prediction results    
     st.write(f"**Predicted Class:** {predicted_class}")    
     st.write(f"**Prediction Probabilities:** {predicted_proba}")
-    
-    # Generate advice based on prediction results    
-    probability = predicted_proba[predicted_class] * 100
     
 
 
