@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sksurv.ensemble import RandomSurvivalForest
 
 # Load the model
-model = joblib.load('/Users/kevinmurphy/Desktop/HEV-ALF预测模型部署/HEV-ALF/rsf.mod1.pkl')
+model = joblib.load('rsf.mod1.pkl')
 # Define feature names
 feature_names = ["NEU", "ALB", "AST", "TBIL", "UREA", "INR"]
 # Streamlit user interface
