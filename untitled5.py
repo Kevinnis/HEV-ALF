@@ -36,6 +36,14 @@ feature_values = [INR,TBIL,ALB,NEU,AST,UREA]
 
 features = np.array([feature_values])
 
+center_button = st.markdown("""
+    <style>
+    div.stButton > button:first-child {
+        display: block;
+        margin: 0 auto;
+    }
+    </style>""", unsafe_allow_html=True) #预测按钮居中
+    
 if st.button("Predict"):    
     # 预测风险评分
     risk_score = model.predict(features)[0]
