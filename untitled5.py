@@ -32,7 +32,7 @@ AST = st.number_input("Aspartate aminotransferase (U/L)", min_value=0.0, max_val
 UREA = st.number_input("Urea (mmol/L)", min_value=0.0, max_value=10000.0, format="%.2f")
 
 
-feature_values = [INR,TBIL,ALB,NEU,AST,UREA]
+feature_values = [NEU, ALB, AST, TBIL, UREA, INR]
 
 features = np.array([feature_values])
 
