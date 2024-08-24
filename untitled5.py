@@ -19,7 +19,7 @@ st.markdown("<h2 style='font-weight: bold;'>Predicting the risk of HEV-ALF onset
 import streamlit as st
 
 # 设置每个数值输入的格式为两位小数
-INR = st.number_input("International Normalized Ratio", min_value=0.0, max_value=100.0, format="%.2f")
+INR = st.number_input("International normalized ratio", min_value=0.0, max_value=100.0, format="%.2f")
 
 TBIL = st.number_input("Total bilirubin (μmol/L)", min_value=0.0, max_value=10000.0, format="%.2f")
 
@@ -41,19 +41,18 @@ if st.button("Predict"):
     risk_score = model.predict(features)[0]
     
     # 显示 Risk Score
-    st.write(f"**Risk Score:** {risk_score:.4f}")
+    st.markdown(f"<h3 style='text-align: center;'>Risk Score: {risk_score:.4f}</h3>", unsafe_allow_html=True)
     
     # 计算并显示 7-day 和 14-day HEV-ALF onset risk
     if risk_score >= 2.787183:
-        st.write("**7-day HEV-ALF onset risk:** High-risk")
+        st.markdown("<h3 style='text-align: center; color: red;'>7-day HEV-ALF onset risk: High-risk</h3>", unsafe_allow_html=True)
     else:
-        st.write("**7-day HEV-ALF onset risk:** Low-risk")
+        st.markdown("<h3 style='text-align: center; color: green;'>7-day HEV-ALF onset risk: Low-risk</h3>", unsafe_allow_html=True)
         
     if risk_score >= 2.640324:
-        st.write("**14-day HEV-ALF onset risk:** High-risk")
+        st.markdown("<h3 style='text-align: center; color: red;'>14-day HEV-ALF onset risk: High-risk</h3>", unsafe_allow_html=True)
     else:
-        st.write("**14-day HEV-ALF onset risk:** Low-risk")
-
+        st.markdown("<h3 style='text-align: center; color: green;'>14-day HEV-ALF onset risk: Low-risk</h3>", unsafe_allow_html=True)
 
     
     
