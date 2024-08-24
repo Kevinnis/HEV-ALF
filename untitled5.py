@@ -14,7 +14,7 @@ st.title("HEV-ALF Predictor")
 
 #  numerical input
 # 设置自定义标题字体
-st.markdown("<h2 style='font-weight: bold;'>Predicting the risk of HEV-ALF onset among hospitalized patients with acute hepatitis</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='font-weight: bold;'>Predicting the risk of HEV-ALF onset among hospitalized patients with acute hepatitis E</h2>", unsafe_allow_html=True)
 
 import streamlit as st
 
@@ -37,13 +37,22 @@ feature_values = [INR,TBIL,ALB,NEU,AST,UREA]
 features = np.array([feature_values])
 
 if st.button("Predict"):    
-    # Predict class and probabilities    
-    predicted_class = model.predict(features)[0]    
-    predicted_proba = model.predict(features)[0]
-    # Display prediction results    
-    st.write(f"**Predicted Class:** {predicted_class}")    
-    st.write(f"**Prediction Probabilities:** {predicted_proba}")
+    # 预测风险评分
+    risk_score = model.predict(features)[0]
     
+    # 显示 Risk Score
+    st.write(f"**Risk Score:** {risk_score:.4f}")
+    
+    # 计算并显示 7-day 和 14-day HEV-ALF onset risk
+    if risk_score >= 2.787183:
+        st.write("**7-day HEV-ALF onset risk:** High-risk")
+    else:
+        st.write("**7-day HEV-ALF onset risk:** Low-risk")
+        
+    if risk_score >= 2.640324:
+        st.write("**14-day HEV-ALF onset risk:** High-risk")
+    else:
+        st.write("**14-day HEV-ALF onset risk:** Low-risk")
 
 
     
