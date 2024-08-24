@@ -14,7 +14,7 @@ st.title("HEV-ALF Predictor")
 
 #  numerical input
 # 设置自定义标题字体
-st.markdown("<h2 style='font-weight: bold;'>HEV-ALF Risk Prediction Model</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='font-weight: bold;'>Predicting the risk of HEV-ALF onset among hospitalized patients with acute hepatitis</h2>", unsafe_allow_html=True)
 
 import streamlit as st
 
