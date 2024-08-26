@@ -65,13 +65,15 @@ if st.button("Predict"):
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
 # Generate an interactive force plot without using matplotlib
-    force_plot_html = shap.plots.waterfall(shap_values[0],)
+    force_plot=shap.force_plot(shap_values.base_values, shap_values[0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)    
 
-# Save the interactive plot as an HTML file
-    shap.save_html("shap_force_plot.html", force_plot_html)
+    force_plot
+
+# 保存为HTML文件
+    shap.save_html("force_plot.html", force_plot)
 
 # Display the HTML plot
-    st.components.v1.html(open("shap_force_plot.html").read(), height=500)
+    st.components.v1.html(open("force_plot.html").read(), height=500)
     
     
     
