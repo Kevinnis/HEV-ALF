@@ -65,7 +65,7 @@ if st.button("Predict"):
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
     # Create a plot with a specific figure size to reduce the image size
-    plt.figure(figsize=(10, 5))  # Adjust the figsize to smaller dimensions
+    plt.figure(figsize=(5, 5))  # Adjust the figsize to smaller dimensions
 
     # Plot and display SHAP values
     shap.waterfall_plot(shap_values[0], max_display=len(feature_names))
