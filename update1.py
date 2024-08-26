@@ -64,13 +64,15 @@ if st.button("Predict"):
     explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
+    # Create a plot with a specific figure size to reduce the image size
+    plt.figure(figsize=(10, 5))  # Adjust the figsize to smaller dimensions
+
     # Plot and display SHAP values
     shap.waterfall_plot(shap_values[0], max_display=len(feature_names))
 
-    # Adjust DPI and image size to prevent size errors
-    plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=300)  # You can adjust dpi value accordingly
+    # Save the plot with adjusted size and dpi
+    plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=100)
     st.image("shap_force_plot.png")
-    
     
     
     
