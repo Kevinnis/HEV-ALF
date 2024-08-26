@@ -66,5 +66,13 @@ if st.button("Predict"):
     
     # Plot and display SHAP values
     shap.waterfall_plot(shap_values[0], max_display=len(feature_names))
-    plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
+
+    # Adjust DPI and image size to prevent size errors
+    plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=300)  # You can adjust dpi value accordingly
     st.image("shap_force_plot.png")
+    
+    
+    
+    
+    
+    
