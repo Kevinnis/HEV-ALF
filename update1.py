@@ -65,12 +65,8 @@ if st.button("Predict"):
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
 # Generate an interactive force plot without using matplotlib
-    force_plot=shap.force_plot(shap_values.base_values, shap_values[0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)    
-
-    force_plot
-
+    shap.force_plot(shap_values.base_values, shap_values[0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)    
     plt.savefig("force_plot.png", bbox_inches='tight', dpi=1200)
-    
     st.image("force_plot.png")
     
     
