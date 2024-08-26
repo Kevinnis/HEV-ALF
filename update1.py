@@ -64,7 +64,7 @@ if st.button("Predict"):
     explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
-    shap.force_plot(shap_values.base_values, shap_values.values[0], feature_names, matplotlib=True)
+    shap.force_plot(shap_values.values[0], feature_names, matplotlib=True)
     plt.savefig('shap_force_plot.png')
 
 # 在 Streamlit 中显示图像
