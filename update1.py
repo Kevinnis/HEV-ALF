@@ -69,13 +69,9 @@ if st.button("Predict"):
 
     force_plot
 
-# 保存为HTML文件
-    shap.save_html("force_plot.html", force_plot)
-
-# Display the HTML plot
-    st.components.v1.html(open("force_plot.html").read(), height=500)
+    plt.savefig("force_plot.png", bbox_inches='tight', dpi=1200)
     
-    
+    st.image("force_plot.png")
     
     
     
