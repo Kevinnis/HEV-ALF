@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sksurv.ensemble import RandomSurvivalForest
+import shap
 
 # Load the model
 model = joblib.load('rsf.mod1.pkl')
@@ -63,7 +64,15 @@ if st.button("Predict"):
         st.markdown("<h3 style='text-align: center; color: green;'>14-day HEV-ALF onset risk: Low-risk</h3>", unsafe_allow_html=True)
 
     
-    
+def predict_fn(X):
+        return rsf_mod1.predict(X)
+
+# 计算SHAP值
+ explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
+ shap_values = explainer.shap_values(pd.DataFrame([feature_values], columns=feature_names))
+ shap.plots.waterfall(shap_values[0],)
+ plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
+ st.image("shap_force_plot.png")    
     
     
     
