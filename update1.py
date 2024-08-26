@@ -64,15 +64,14 @@ if st.button("Predict"):
     explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
-    # Create a plot with a specific figure size to reduce the image size
-    plt.figure(figsize=(5, 5))  # Adjust the figsize to smaller dimensions
+# Generate an interactive force plot without using matplotlib
+    force_plot_html = shap.force_plot(explainer.expected_value[0], shap_values.values[0], feature_names, matplotlib=False)
 
-    # Plot and display SHAP values
-    shap.waterfall_plot(shap_values[0], max_display=len(feature_names))
+# Save the interactive plot as an HTML file
+    shap.save_html("shap_force_plot.html", force_plot_html)
 
-    # Save the plot with adjusted size and dpi
-    plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=100)
-    st.image("shap_force_plot.png")
+# Display the HTML plot
+    st.components.v1.html(open("shap_force_plot.html").read(), height=500)
     
     
     
