@@ -41,26 +41,10 @@ st.markdown("""
 if st.button("Predict"):    
     # Predict risk score
     risk_score = model.predict(features)[0]
-    survival_probabilities = model.predict_survival_function(features, return_array=True)
-
-
-    survival_functions = model.predict_survival_function(features)
-
-    # Extract 7-day and 14-day survival probabilities
-    survival_7_day = survival_functions   # survival probability at 7 days
-    survival_14_day = survival_functions  # survival probability at 14 days
     
-    # Convert to risk probabilities
-    risk_7_day = 1 -  survival_probabilities
-    risk_14_day = 1 - survival_probabilities
-
     # Display Risk Score
     st.markdown(f"<h3 style='text-align: center;'>Risk Score: {risk_score:.4f}</h3>", unsafe_allow_html=True)
 
-    # Display risk probabilities
-    st.markdown(f"<h3 style='text-align: center;'>7-day HEV-ALF onset risk: {risk_7_day * 100:.2f}%</h3>", unsafe_allow_html=True)
-    st.markdown(f"<h3 style='text-align: center;'>14-day HEV-ALF onset risk: {risk_14_day * 100:.2f}%</h3>", unsafe_allow_html=True)
-   
     # Display 7-day and 14-day HEV-ALF onset risk
     if risk_score >= 2.787183:
         st.markdown("<h3 style='text-align: center; color: red;'>7-day HEV-ALF onset risk: High-risk</h3>", unsafe_allow_html=True)
