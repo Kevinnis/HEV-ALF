@@ -42,14 +42,17 @@ if st.button("Predict"):
     # Predict risk score
     risk_score = model.predict(features)[0]
     survival_probabilities = model.predict_survival_function(features, return_array=True)
-    
-    # Get survival probabilities for 7-day and 14-day
-    survival_7_day = np.interp(7, model.event_times_, survival_probabilities[0])
-    survival_14_day = np.interp(14, model.event_times_, survival_probabilities[0])
+
+
+    survival_functions = model.predict_survival_function(features)
+
+    # Extract 7-day and 14-day survival probabilities
+    survival_7_day = survival_functions   # survival probability at 7 days
+    survival_14_day = survival_functions  # survival probability at 14 days
     
     # Convert to risk probabilities
-    risk_7_day = 1 - survival_7_day
-    risk_14_day = 1 - survival_14_day
+    risk_7_day = 1 -  survival_probabilities
+    risk_14_day = 1 - survival_probabilities
 
     # Display Risk Score
     st.markdown(f"<h3 style='text-align: center;'>Risk Score: {risk_score:.4f}</h3>", unsafe_allow_html=True)
