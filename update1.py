@@ -13,7 +13,7 @@ model = joblib.load('rsf.mod1.pkl')
 feature_names = ["NEU", "ALB", "AST", "TBIL", "UREA", "INR"]
 
 # Streamlit user interface
-st.title("HEV-ALF Predictor")
+st.title("HEV-ALF RSF Predictor")
 
 # Custom title font
 st.markdown("<h2 style='font-weight: bold;'>Predicting the risk of HEV-ALF onset among hospitalized patients with acute hepatitis E</h2>", unsafe_allow_html=True)
@@ -41,10 +41,23 @@ st.markdown("""
 if st.button("Predict"):    
     # Predict risk score
     risk_score = model.predict(features)[0]
+    survival_probabilities = model.predict_survival_function(features, return_array=True)
     
+    # Get survival probabilities for 7-day and 14-day
+    survival_7_day = np.interp(7, model.event_times_, survival_probabilities[0])
+    survival_14_day = np.interp(14, model.event_times_, survival_probabilities[0])
+    
+    # Convert to risk probabilities
+    risk_7_day = 1 - survival_7_day
+    risk_14_day = 1 - survival_14_day
+
     # Display Risk Score
     st.markdown(f"<h3 style='text-align: center;'>Risk Score: {risk_score:.4f}</h3>", unsafe_allow_html=True)
-    
+
+    # Display risk probabilities
+    st.markdown(f"<h3 style='text-align: center;'>7-day HEV-ALF onset risk: {risk_7_day * 100:.2f}%</h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='text-align: center;'>14-day HEV-ALF onset risk: {risk_14_day * 100:.2f}%</h3>", unsafe_allow_html=True)
+   
     # Display 7-day and 14-day HEV-ALF onset risk
     if risk_score >= 2.787183:
         st.markdown("<h3 style='text-align: center; color: red;'>7-day HEV-ALF onset risk: High-risk</h3>", unsafe_allow_html=True)
@@ -64,7 +77,7 @@ if st.button("Predict"):
     explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
-    shap.force_plot(shap_values.base_values[0], shap_values.values[0], feature_names, matplotlib=True)
+    shap.force_plot(shap_values.base_values[0], shap_values.values[0], feature_names, matplotlib=False)
     plt.savefig('shap_force_plot.png')
 
 # 在 Streamlit 中显示图像
