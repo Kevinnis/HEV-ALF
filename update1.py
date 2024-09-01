@@ -41,7 +41,7 @@ st.markdown("""
 if st.button("Predict"):    
     # Predict risk score
     risk_score = model.predict(features)[0]
-    
+
     # Display Risk Score
     st.markdown(f"<h3 style='text-align: center;'>Risk Score: {risk_score:.4f}</h3>", unsafe_allow_html=True)
 
@@ -64,7 +64,7 @@ if st.button("Predict"):
     explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
     shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
     
-    shap.force_plot(shap_values.base_values[0], shap_values.values[0], feature_names, matplotlib=False)
+    shap.force_plot(shap_values.base_values[0], shap_values.values[0], feature_names, matplotlib=True)
     plt.savefig('shap_force_plot.png')
 
 # 在 Streamlit 中显示图像
