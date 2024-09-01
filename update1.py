@@ -74,6 +74,6 @@ if st.button("Predict"):
     image = Image.open('shap_force_plot.png')
     st.image(image)
     
-    
+st.caption('This is a string that explains something above.')
     
     
