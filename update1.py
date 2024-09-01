@@ -13,7 +13,7 @@ model = joblib.load('rsf.mod1.pkl')
 feature_names = ["NEU", "ALB", "AST", "TBIL", "UREA", "INR"]
 
 # Streamlit user interface
-st.title("<h2 style='font-weight: bold;'> HEV-ALF RSF Predictor </h2>", unsafe_allow_html=True)
+st.title("HEV-ALF RSF Predictor")
 
 # Numerical input
 INR = st.number_input("International normalized ratio", min_value=0.0, max_value=100.0, format="%.2f")
