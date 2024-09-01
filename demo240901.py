@@ -54,25 +54,25 @@ if st.button("Predict"):
         st.markdown("<h3 style='text-align: center; color: green;'>14-day HEV-ALF onset risk: Low-risk</h3>", unsafe_allow_html=True)
 
     # Function for SHAP predictions
-    def predict_fn(X):
-        return model.predict(X)
-    
-    # Compute SHAP values
-    explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
-    shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
-    
-    shap.force_plot(shap_values.base_values[0], shap_values.values[0], feature_names, matplotlib=True)
-    plt.savefig('shap_force_plot.png')
+#    def predict_fn(X):
+#        return model.predict(X)
+#    
+#    # Compute SHAP values
+#    explainer = shap.Explainer(predict_fn, pd.DataFrame([feature_values], columns=feature_names))
+#    shap_values = explainer(pd.DataFrame([feature_values], columns=feature_names))
+#    
+#    shap.force_plot(shap_values.base_values[0], shap_values.values[0], feature_names, matplotlib=True)
+#    plt.savefig('shap_force_plot.png')
 
 # 在 Streamlit 中显示图像
-    import streamlit as st
-    from PIL import Image
-
-    image = Image.open('shap_force_plot.png')
-    st.image(image)
-    
+#    import streamlit as st
+#    from PIL import Image
+#
+#    image = Image.open('shap_force_plot.png')
+#    st.image(image)
+#    
 st.caption('This online tool was designed to predict the risk of HEV-ALF onset among patients with acute hepatitis E')
-st.caption('Version: 240901')
+st.caption('Version: demo240901')
 st.caption('Contact: wangjienjmu@126.com')
     
     
