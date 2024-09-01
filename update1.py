@@ -72,6 +72,7 @@ if st.button("Predict"):
     st.image(image)
     
 st.caption('This online tool was designed to predict the risk of HEV-ALF onset among patients with acute hepatitis E')
-st.caption('Several issues should be noted')
+st.caption('Version: 240901')
+st.caption('Contact: wangjienjmu@126.com')
     
     
