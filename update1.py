@@ -13,10 +13,7 @@ model = joblib.load('rsf.mod1.pkl')
 feature_names = ["NEU", "ALB", "AST", "TBIL", "UREA", "INR"]
 
 # Streamlit user interface
-st.title("HEV-ALF RSF Predictor")
-
-# Custom title font
-st.markdown("<h2 style='font-weight: bold;'>Predicting the risk of HEV-ALF onset among hospitalized patients with acute hepatitis E</h2>", unsafe_allow_html=True)
+st.title("<h2 style='font-weight: bold;'> HEV-ALF RSF Predictor </h2>", unsafe_allow_html=True)
 
 # Numerical input
 INR = st.number_input("International normalized ratio", min_value=0.0, max_value=100.0, format="%.2f")
@@ -74,6 +71,7 @@ if st.button("Predict"):
     image = Image.open('shap_force_plot.png')
     st.image(image)
     
-st.caption('This is a string that explains something above.')
+st.caption('This online tool was designed to predict the risk of HEV-ALF onset among patients with acute hepatitis E')
+st.caption('Several issues should be noted')
     
     
